@@ -42,7 +42,7 @@ class Enemy4(pygame.sprite.Sprite):
         self.item = pygame.sprite.Group()
         self.vel_x = 1
         self.vel_y = 3
-        self.score_value = 500 +( (500 - pygame.time.get_ticks()//1000)-185)
+        self.score_value = 500 + (300 - ((pygame.time.get_ticks()//1000)-185))
         self.score = 0
         self.anime_explosion = [self.ing_explosion_01,
                                 self.ing_explosion_02,
