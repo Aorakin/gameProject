@@ -175,13 +175,13 @@ class Enemy3(pygame.sprite.Sprite):
 
     def genitem(self):
         random_change = random.randrange(1,100)
-        if random_change >=1 and random_change<=25:
+        if random_change >=1 and random_change<=15:
             item = Item(self.rect.x,self.rect.y,0,'graphics/item1.png')
             self.item.add(item)
-        elif random_change>26 and random_change <=50:
+        elif random_change>15 and random_change <=40:
             item = Item(self.rect.x,self.rect.y,1,'graphics/item2.png')
             self.item.add(item)
-        elif random_change>50 and random_change <=75:
+        elif random_change>40 and random_change <=55:
             item = Item(self.rect.x,self.rect.y,2,'graphics/item3.png')
             self.item.add(item)
 
