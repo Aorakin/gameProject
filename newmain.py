@@ -4,7 +4,6 @@ from ship import Ship
 from background import BG
 from enemy_spawn import EnemySpawner
 from particleSpawner import ParticleSpawner
-from menu2 import mainmenu
 import botton
 from enemy_2 import Enemy2
 from enemy import Enemy
@@ -43,9 +42,7 @@ sprite_group = pygame.sprite.Group()
 sprite_group.add(player)
 enemy_spawner = EnemySpawner()
 particle_spawner = ParticleSpawner()
-menu = mainmenu()
 menu_group = pygame.sprite.Group()
-menu_group.add(menu)
 aler_box_group = pygame.sprite.Group()
 
 button_group = pygame.sprite.Group()

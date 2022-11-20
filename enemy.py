@@ -23,11 +23,11 @@ class Enemy(pygame.sprite.Sprite):
 
         self.image = pygame.image.load('graphics/mons.png').convert_alpha()
         self.image = pygame.transform.scale(self.image,(self.image.get_width()*0.85,self.image.get_height()*0.85))
-        self.image2 = [pygame.image.load('graphics/toi.png'),pygame.image.load('graphics/toi2.png'),pygame.image.load('graphics/toi3.png'),pygame.image.load('graphics/toi4.png'),pygame.image.load('graphics/toi5.png'),
-        pygame.image.load('graphics/toi.png'),pygame.image.load('graphics/toi2.png'),pygame.image.load('graphics/toi3.png'),pygame.image.load('graphics/toi4.png'),pygame.image.load('graphics/toi5.png'),
-        pygame.image.load('graphics/toi.png'),pygame.image.load('graphics/toi2.png'),pygame.image.load('graphics/toi3.png'),pygame.image.load('graphics/toi4.png'),pygame.image.load('graphics/toi5.png').convert_alpha()]
+        # self.image2 = [pygame.image.load('graphics/toi.png'),pygame.image.load('graphics/toi2.png'),pygame.image.load('graphics/toi3.png'),pygame.image.load('graphics/toi4.png'),pygame.image.load('graphics/toi5.png'),
+        # pygame.image.load('graphics/toi.png'),pygame.image.load('graphics/toi2.png'),pygame.image.load('graphics/toi3.png'),pygame.image.load('graphics/toi4.png'),pygame.image.load('graphics/toi5.png'),
+        # pygame.image.load('graphics/toi.png'),pygame.image.load('graphics/toi2.png'),pygame.image.load('graphics/toi3.png'),pygame.image.load('graphics/toi4.png'),pygame.image.load('graphics/toi5.png').convert_alpha()]
         self.change = 0
-        self.rect_image2 = self.image2[self.change].get_rect()
+        # self.rect_image2 = self.image2[self.change].get_rect()
         self.destroyed = False
         self.invincible = False
         self.rect = self.image.get_rect()
@@ -36,12 +36,13 @@ class Enemy(pygame.sprite.Sprite):
         self.frame_length_max = 6
         self.frame_length = self.frame_length_max
 
-        self.hp = 3
-        self.snd_hit = pygame.mixer.Sound('sound/kill2.mp3')
+        self.hp = 3 #3
+        self.snd_hit = pygame.mixer.Sound('sound/hit.mp3')
+        self.bullets = pygame.sprite.Group()
+        self.item = pygame.sprite.Group()
         self.vel_x = 0
-        self.vel_y = random.randrange(3,8)
-        self.vel2_x = 0
-        self.vel2_y = random.randrange(3,8)
+        self.vel_y = random.randrange(3,10)
+        self.score_value = 5
         self.score = 0
         self.anime_explosion = [self.ing_explosion_01,
                                 self.ing_explosion_02,
@@ -54,8 +55,6 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         self.rect.x +=self.vel_x
         self.rect.y +=self.vel_y
-        self.rect_image2.x +=self.vel2_x
-        self.rect_image2.y +=self.vel2_y
         if self.destroyed:
             max_index = len(self.anime_explosion)-1
             if self.frame_length ==0:
@@ -71,15 +70,23 @@ class Enemy(pygame.sprite.Sprite):
     def get_hit(self):
         if not self.invincible:
             self.hp -=1
+            self.snd_hit.play()
             if self.hp <=0:
-                self.destroyed = True
                 self.invincible = True
-                self.snd_hit.play()
+                self.destroyed = True
+                self.vel_x = 0
+                self.vel_y = 0
                 self.rect.x = self.rect.x-10
                 self.rect.y = self.rect.y-10
                 self.image = self.anime_explosion[self.anime_index]
+            # else:
+               
+                
+
         else : 
             pass
+    def speedup_en1(self):
+        self.vel_y+=0.2
     # def changetoi(self):
     #     self.rect_image2.x 
             
